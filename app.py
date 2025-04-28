@@ -9,9 +9,9 @@ domain = st.text_input("Enter a domain to lookup:")
 if st.button("Search"):
     st.write(f"Looking up information for: {domain}")
 
-    # Example 1: Basic Whois lookup using a public API
+    # Basic Whois lookup using a public API
     whois_url = f"https://api.api-ninjas.com/v1/whois?domain={domain}" ## uses API Ninja 
-    headers = {'X-Api-Key': 'O7zThsF6820vxz0DFv6RSg==kVvRPEnE5xHJbh4l'}  # You will need a free API key - why did i need this?
+    headers = {'X-Api-Key': 'xxxxxxxxxxx'}  # Key - 
     response = requests.get(whois_url, headers=headers)
 
     if response.status_code == 200:
@@ -20,7 +20,7 @@ if st.button("Search"):
     else:
         st.error("Could not fetch data. Check your API key or domain.")
      
-        # Example 2: Wayback Machine lookup
+        # Wayback Machine lookup
     wayback_url = f"http://archive.org/wayback/available?url={domain}" ## usein Archive.org
     wayback_response = requests.get(wayback_url)
 
@@ -35,12 +35,12 @@ if st.button("Search"):
     else:
         st.error("Could not check Wayback Machine.")
 
-        # Example 3: IP Address lookup
+        #IP Address lookup
     try:
         ip_address = requests.get(f"https://dns.google/resolve?name={domain}").json()['Answer'][0]['data']
         st.success(f"Domain resolves to IP: {ip_address}")
         
-        # Example IP Reputation Check (using ipinfo.io free API)
+        # IP Reputation Check (using ipinfo.io free API)
         ipinfo_url = f"https://ipinfo.io/{ip_address}/json"
         ipinfo_response = requests.get(ipinfo_url)
 
@@ -53,7 +53,7 @@ if st.button("Search"):
     except:
         st.warning("Could not resolve domain to IP address.")
 
-    # Example 4: Domain Risk Scoring
+    # Domain Risk Scoring
     risk_score = 0
 
     # Risk 1: Domain Age Check
@@ -94,7 +94,7 @@ if st.button("Search"):
         st.warning("Skipped IP risk check: No IP info available.")
 
    # --- VirusTotal lookup (MUST BE INSIDE THIS BLOCK) ---
-    virustotal_api_key = '798f24d74b10873177177ee2c6bab09cb3d82d752d82444e12a374926cf36fad'
+    virustotal_api_key = 'xxxx'
     vt_headers = { "x-apikey": virustotal_api_key }
     vt_url = f"https://www.virustotal.com/api/v3/domains/{domain}"
     vt_response = requests.get(vt_url, headers=vt_headers)
